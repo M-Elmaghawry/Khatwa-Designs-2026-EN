@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Tech Innovators",
+    "logo": "client-logo-1",
+    "logoAlt": "Tech Innovators company logo"
+  },
+  {
+    "id": 2,
+    "name": "Digital Solutions",
+    "logo": "client-logo-2",
+    "logoAlt": "Digital Solutions company logo"
+  },
+  {
+    "id": 3,
+    "name": "Creative Hub",
+    "logo": "client-logo-3",
+    "logoAlt": "Creative Hub company logo"
+  },
+  {
+    "id": 4,
+    "name": "Business Pro",
+    "logo": "client-logo-4",
+    "logoAlt": "Business Pro company logo"
+  },
+  {
+    "id": 5,
+    "name": "Smart Systems",
+    "logo": "client-logo-5",
+    "logoAlt": "Smart Systems company logo"
+  },
+  {
+    "id": 6,
+    "name": "Future Tech",
+    "logo": "client-logo-6",
+    "logoAlt": "Future Tech company logo"
+  },
+  {
+    "id": 7,
+    "name": "Digital Edge",
+    "logo": "client-logo-7",
+    "logoAlt": "Digital Edge company logo"
+  },
+  {
+    "id": 8,
+    "name": "Innovation Labs",
+    "logo": "client-logo-8",
+    "logoAlt": "Innovation Labs company logo"
+  }
+]

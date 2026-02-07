@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Moving Call Brand",
+    "category": "Branding",
+    "description": "Complete brand identity and social media presence for a moving services company",
+    "image": "instagram-mockup",
+    "imageAlt": "Instagram brand mockup with vibrant gradient design",
+    "color": "#E1306C"
+  },
+  {
+    "id": 2,
+    "title": "Travel App",
+    "category": "Mobile App Design",
+    "description": "Modern travel application UI/UX design with intuitive navigation",
+    "image": "travel-app-mockup",
+    "imageAlt": "Mobile app screens showing travel interface",
+    "color": "#4A90E2"
+  },
+  {
+    "id": 3,
+    "title": "Social Media Campaign",
+    "category": "Digital Marketing",
+    "description": "Creative social media campaign with engaging visual content",
+    "image": "social-media-grid",
+    "imageAlt": "Grid of colorful social media posts and designs",
+    "color": "#FF6B6B"
+  },
+  {
+    "id": 4,
+    "title": "Tech Company Logo",
+    "category": "Logo Design",
+    "description": "Modern minimalist logo design for a technology startup",
+    "image": "tech-logo-mockup",
+    "imageAlt": "Modern tech company logo on orange background",
+    "color": "#FF8C42"
+  },
+  {
+    "id": 5,
+    "title": "E-commerce Website",
+    "category": "Web Design",
+    "description": "Full e-commerce website design with seamless shopping experience",
+    "image": "ecommerce-mockup",
+    "imageAlt": "E-commerce website interface on laptop",
+    "color": "#00B894"
+  },
+  {
+    "id": 6,
+    "title": "Motion Video",
+    "category": "Motion Graphics",
+    "description": "Engaging motion graphics video for brand storytelling",
+    "image": "motion-video-mockup",
+    "imageAlt": "Motion graphics video frame with dynamic elements",
+    "color": "#00CEC9"
+  }
+]

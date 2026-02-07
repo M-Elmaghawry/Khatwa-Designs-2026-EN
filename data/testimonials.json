@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Khalid Al-Ahmad",
+    "company": "Technology Startup",
+    "position": "CEO & Founder",
+    "text": "One of the best developers I could have worked with. Showed results significantly increased our customers' engagement",
+    "rating": 5,
+    "avatar": "avatar-1",
+    "avatarAlt": "Khalid Al-Ahmad profile picture"
+  },
+  {
+    "id": 2,
+    "name": "Sarah Johnson",
+    "company": "E-Commerce Brand",
+    "position": "Marketing Director",
+    "text": "Exceptional quality and creativity! The team delivered beyond our expectations and helped transform our brand identity completely.",
+    "rating": 5,
+    "avatar": "avatar-2",
+    "avatarAlt": "Sarah Johnson profile picture"
+  },
+  {
+    "id": 3,
+    "name": "Ahmed Hassan",
+    "company": "Digital Agency",
+    "position": "Creative Director",
+    "text": "Professional service from start to finish. Great communication, fast delivery, and outstanding results. Highly recommend!",
+    "rating": 5,
+    "avatar": "avatar-3",
+    "avatarAlt": "Ahmed Hassan profile picture"
+  },
+  {
+    "id": 4,
+    "name": "Emily Chen",
+    "company": "Tech Solutions",
+    "position": "Product Manager",
+    "text": "The design quality is exceptional and the attention to detail is remarkable. Our users love the new interface!",
+    "rating": 5,
+    "avatar": "avatar-4",
+    "avatarAlt": "Emily Chen profile picture"
+  }
+]

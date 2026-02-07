@@ -1,0 +1,71 @@
+{
+  "hero": {
+    "title": "We Design Your Identity",
+    "highlight": "in One Step",
+    "subtitle": "Transform your brand with expert design services. We deliver custom-tailored visual solutions that make your business stand out in the digital landscape.",
+    "primaryCta": "Start Your Project",
+    "secondaryCta": "View Our Work",
+    "stats": [
+      {
+        "value": "250+",
+        "label": "Completed Projects",
+        "icon": "fa-check-circle"
+      },
+      {
+        "value": "180+",
+        "label": "Happy Clients",
+        "icon": "fa-users"
+      },
+      {
+        "value": "8+",
+        "label": "Years Experience",
+        "icon": "fa-award"
+      }
+    ],
+    "heroImage": "Creative Design",
+    "heroImageAlt": "Creative design workspace showing multiple design projects"
+  },
+  "about": {
+    "text": "We are a creative design agency specializing in delivering impactful visual solutions that help businesses grow and stand out in their industries.",
+    "values": ["Exceptional Quality", "Creative Innovation", "Fast Delivery", "Competitive Prices"]
+  },
+  "whyChoose": {
+    "tag": "Our Advantages",
+    "title": "Why Choose Khatwa?",
+    "subtitle": "We work with innovative technology and a professional team to ensure the best results",
+    "features": [
+      {
+        "title": "Exceptional Quality",
+        "description": "We ensure superior quality standards in every project we deliver",
+        "icon": "fa-star",
+        "color": "#FFCD05"
+      },
+      {
+        "title": "Fast Delivery",
+        "description": "We complete projects on time without compromising quality",
+        "icon": "fa-clock",
+        "color": "#FFCD05"
+      },
+      {
+        "title": "Continuous Support",
+        "description": "24/7 customer support to answer all your questions",
+        "icon": "fa-headset",
+        "color": "#FFCD05"
+      },
+      {
+        "title": "Competitive Prices",
+        "description": "High quality services at reasonable and competitive prices",
+        "icon": "fa-tag",
+        "color": "#FFCD05"
+      }
+    ]
+  },
+  "cta": {
+    "tag": "Get in Touch",
+    "title": "Ready to Start Your Project?",
+    "subtitle": "Let's turn your ideas into reality and create a unique visual identity for your brand",
+    "buttonText": "Contact Us Now",
+    "buttonIcon": "fa-arrow-right"
+  },
+  "footerText": "Professional design services helping brands create memorable visual identities and grow their digital presence."
+}

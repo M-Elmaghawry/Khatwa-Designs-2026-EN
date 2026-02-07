@@ -1,0 +1,50 @@
+[
+  {
+    "id": "logo-design",
+    "title": "Logo Design",
+    "description": "Professional logo designs that reflect your brand values and create a lasting impression",
+    "icon": "fa-pen-nib",
+    "color": "#FF8C42",
+    "link": "Learn More"
+  },
+  {
+    "id": "web-design",
+    "title": "Logo Design",
+    "description": "Create stunning web experiences that engage users and convert visitors into customers",
+    "icon": "fa-laptop-code",
+    "color": "#5B8DEE",
+    "link": "Learn More"
+  },
+  {
+    "id": "social-media",
+    "title": "Social Media Design",
+    "description": "Engaging social media designs tailored for your platforms and audience",
+    "icon": "fa-share-nodes",
+    "color": "#E84393",
+    "link": "Learn More"
+  },
+  {
+    "id": "ui-ux",
+    "title": "UI/UX Design",
+    "description": "User-centered design solutions that ensure great user experiences",
+    "icon": "fa-mobile-screen",
+    "color": "#00B894",
+    "link": "Learn More"
+  },
+  {
+    "id": "motion-graphics",
+    "title": "Motion Graphics",
+    "description": "Dynamic animations and motion graphics that bring your stories to life",
+    "icon": "fa-film",
+    "color": "#A29BFE",
+    "link": "Learn More"
+  },
+  {
+    "id": "web-development",
+    "title": "Web Design",
+    "description": "Modern and responsive websites optimized for all devices and browsers",
+    "icon": "fa-globe",
+    "color": "#00CEC9",
+    "link": "Learn More"
+  }
+]

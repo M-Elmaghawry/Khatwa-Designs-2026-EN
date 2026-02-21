@@ -22,6 +22,7 @@ export function renderHero(data) {
   `).join('') : '';
 
   heroContent.innerHTML = `
+    ${data.tag ? `<div class="hero-tag"><i class="fas fa-circle"></i> ${data.tag}</div>` : ''}
     <h1 class="hero-title">
       ${data.title} <span class="highlight">${data.highlight || ''}</span>
     </h1>
@@ -102,9 +103,7 @@ export function renderClients(clients) {
     <div class="clients-track">
       ${clients.concat(clients).map(client => `
         <div class="client-logo">
-          <div class="client-placeholder">
-            ${client.name}
-          </div>
+          <img src="assets/images/clients/${client.logo}" alt="${client.logoAlt || client.name}" loading="lazy">
         </div>
       `).join('')}
     </div>

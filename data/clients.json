@@ -1,50 +1,218 @@
 [
   {
     "id": 1,
-    "name": "Tech Innovators",
-    "logo": "client-logo-1",
-    "logoAlt": "Tech Innovators company logo"
+    "name": "Eng Mekawy",
+    "logo": "01-Eng-Mekawy.png",
+    "logoAlt": "Eng Mekawy company logo"
   },
   {
     "id": 2,
-    "name": "Digital Solutions",
-    "logo": "client-logo-2",
-    "logoAlt": "Digital Solutions company logo"
+    "name": "Engineering Group",
+    "logo": "02-Engineerin-Group.png",
+    "logoAlt": "Engineering Group company logo"
   },
   {
     "id": 3,
-    "name": "Creative Hub",
-    "logo": "client-logo-3",
-    "logoAlt": "Creative Hub company logo"
+    "name": "Almaher Pools",
+    "logo": "03-Almaher-Pools.png",
+    "logoAlt": "Almaher Pools company logo"
   },
   {
     "id": 4,
-    "name": "Business Pro",
-    "logo": "client-logo-4",
-    "logoAlt": "Business Pro company logo"
+    "name": "Muro Real Estate",
+    "logo": "04-Muro-Realestate.png",
+    "logoAlt": "Muro Real Estate company logo"
   },
   {
     "id": 5,
-    "name": "Smart Systems",
-    "logo": "client-logo-5",
-    "logoAlt": "Smart Systems company logo"
+    "name": "Erona Fashion",
+    "logo": "05-Erona-Fashion.jpg",
+    "logoAlt": "Erona Fashion company logo"
   },
   {
     "id": 6,
-    "name": "Future Tech",
-    "logo": "client-logo-6",
-    "logoAlt": "Future Tech company logo"
+    "name": "Queen Beauty",
+    "logo": "06-Queen-Beauty.png",
+    "logoAlt": "Queen Beauty company logo"
   },
   {
     "id": 7,
-    "name": "Digital Edge",
-    "logo": "client-logo-7",
-    "logoAlt": "Digital Edge company logo"
+    "name": "Dr Mohamed Mekawy",
+    "logo": "07-Dr-Mohamed-Mekawy.png",
+    "logoAlt": "Dr Mohamed Mekawy clinic logo"
   },
   {
     "id": 8,
-    "name": "Innovation Labs",
-    "logo": "client-logo-8",
-    "logoAlt": "Innovation Labs company logo"
+    "name": "New Design",
+    "logo": "08-New-Design.png",
+    "logoAlt": "New Design company logo"
+  },
+  {
+    "id": 9,
+    "name": "Chain Factory",
+    "logo": "09-Chain-Factory.png",
+    "logoAlt": "Chain Factory company logo"
+  },
+  {
+    "id": 10,
+    "name": "Elnagar Architect",
+    "logo": "10-Elnagar-Architect.png",
+    "logoAlt": "Elnagar Architect office logo"
+  },
+  {
+    "id": 11,
+    "name": "Edmark Middle East",
+    "logo": "11-Edmark-Middle-East.png",
+    "logoAlt": "Edmark Middle East company logo"
+  },
+  {
+    "id": 12,
+    "name": "Alpha Foundation",
+    "logo": "12-Alpha-Foundation.png",
+    "logoAlt": "Alpha Foundation company logo"
+  },
+  {
+    "id": 13,
+    "name": "Omega Academy",
+    "logo": "13-Omega-Academy.png",
+    "logoAlt": "Omega Academy logo"
+  },
+  {
+    "id": 14,
+    "name": "Fahd Lawyer",
+    "logo": "14-Fahd-Lawyer.png",
+    "logoAlt": "Fahd Lawyer office logo"
+  },
+  {
+    "id": 15,
+    "name": "Tech Game",
+    "logo": "15-Tech-Game.png",
+    "logoAlt": "Tech Game company logo"
+  },
+  {
+    "id": 16,
+    "name": "Alsaleh Contracting",
+    "logo": "16-Alsaleh-Contracting.png",
+    "logoAlt": "Alsaleh Contracting company logo"
+  },
+  {
+    "id": 17,
+    "name": "Odoo Arabic",
+    "logo": "17-Odoo-arabic.png",
+    "logoAlt": "Odoo Arabic company logo"
+  },
+  {
+    "id": 18,
+    "name": "Sunny Shippers",
+    "logo": "18-Sunny-Shippers.png",
+    "logoAlt": "Sunny Shippers company logo"
+  },
+  {
+    "id": 19,
+    "name": "Delta Rides",
+    "logo": "19-Delta-Rides.png",
+    "logoAlt": "Delta Rides company logo"
+  },
+  {
+    "id": 20,
+    "name": "Eng Faris Office",
+    "logo": "20-Eng-Faris-Office.png",
+    "logoAlt": "Eng Faris Office logo"
+  },
+  {
+    "id": 21,
+    "name": "Omintene Gym",
+    "logo": "21-Omintene-Gym.png",
+    "logoAlt": "Omintene Gym logo"
+  },
+  {
+    "id": 22,
+    "name": "Emaar Farid Company",
+    "logo": "22-Emaar-Farid-Company.png",
+    "logoAlt": "Emaar Farid Company logo"
+  },
+  {
+    "id": 23,
+    "name": "Eng Aya Roushdy",
+    "logo": "23-Eng-aya-Roushdy.png",
+    "logoAlt": "Eng Aya Roushdy office logo"
+  },
+  {
+    "id": 24,
+    "name": "Alarosa",
+    "logo": "24-Alarosa.png",
+    "logoAlt": "Alarosa company logo"
+  },
+  {
+    "id": 25,
+    "name": "Solstic",
+    "logo": "25-Solstic.png",
+    "logoAlt": "Solstic company logo"
+  },
+  {
+    "id": 26,
+    "name": "Ghaya Contracting",
+    "logo": "26-Ghaya-Contractin.png",
+    "logoAlt": "Ghaya Contracting company logo"
+  },
+  {
+    "id": 27,
+    "name": "BIM Connection Office",
+    "logo": "27-Bim-Connection-Office.png",
+    "logoAlt": "BIM Connection Office logo"
+  },
+  {
+    "id": 28,
+    "name": "Akiko",
+    "logo": "28-Akiko.png",
+    "logoAlt": "Akiko company logo"
+  },
+  {
+    "id": 29,
+    "name": "Salva",
+    "logo": "29-Salva.jpg",
+    "logoAlt": "Salva company logo"
+  },
+  {
+    "id": 30,
+    "name": "Grand Hotel",
+    "logo": "30-Grand-Hotel.png",
+    "logoAlt": "Grand Hotel logo"
+  },
+  {
+    "id": 31,
+    "name": "Alpha Solutions",
+    "logo": "31-Alpha-Solutions.png",
+    "logoAlt": "Alpha Solutions company logo"
+  },
+  {
+    "id": 32,
+    "name": "Eng Sara Salem",
+    "logo": "32-Eng-Sara-Salem.png",
+    "logoAlt": "Eng Sara Salem office logo"
+  },
+  {
+    "id": 33,
+    "name": "Basma Contracting",
+    "logo": "33-Basma-Contracting.png",
+    "logoAlt": "Basma Contracting company logo"
+  },
+  {
+    "id": 34,
+    "name": "Wadi Abraqin Contracting",
+    "logo": "34-Wadi-Abraqin-Contracting.png",
+    "logoAlt": "Wadi Abraqin Contracting company logo"
+  },
+  {
+    "id": 35,
+    "name": "Pro Eng Books",
+    "logo": "35-Pro-Eng-Books.png",
+    "logoAlt": "Pro Eng Books company logo"
+  },
+  {
+    "id": 36,
+    "name": "Elmekawy Plumbing",
+    "logo": "36-Elmekawy-Plumbing.png",
+    "logoAlt": "Elmekawy Plumbing company logo"
   }
 ]

@@ -37,12 +37,34 @@ export function renderHero(data) {
   `;
 
   if (heroImage) {
-    heroImage.innerHTML = `
-      <div class="hero-image-placeholder">
-        <i class="fas fa-palette"></i>
-        <p>${data.heroImage || 'Creative Design'}</p>
-      </div>
-    `;
+    if (data.heroImage) {
+      heroImage.innerHTML = `
+        <div class="hero-image-card">
+          <img src="${data.heroImage}" alt="${data.heroImageAlt || 'Creative Design'}" class="hero-image-asset" loading="lazy">
+          <div class="hero-rating-badge" aria-label="Client rating">
+            <span class="hero-badge-icon"><i class="fas fa-star"></i></span>
+            <div class="hero-badge-text">
+              <strong>5.0</strong>
+              <span>Client Rating</span>
+            </div>
+          </div>
+          <div class="hero-creative-badge" aria-label="Creative design identity">
+            <span class="hero-badge-icon"><i class="fas fa-palette"></i></span>
+            <div class="hero-badge-text">
+              <strong>Creative Design</strong>
+              <span>Unique Identity</span>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      heroImage.innerHTML = `
+        <div class="hero-image-placeholder">
+          <i class="fas fa-palette"></i>
+          <p>Creative Design</p>
+        </div>
+      `;
+    }
   }
 }
 

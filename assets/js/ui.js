@@ -203,15 +203,153 @@ export function renderCTA(data) {
   if (!ctaSection) return;
 
   ctaSection.innerHTML = `
-    <div class="cta-content">
-      <span class="section-tag">${data.tag || 'Get in Touch'}</span>
-      <h2 class="cta-title">${data.title}</h2>
-      <p class="cta-subtitle">${data.subtitle}</p>
-      <button class="btn-primary btn-large" aria-label="${data.buttonText}">
-        ${data.buttonText} <i class="fas ${data.buttonIcon || 'fa-arrow-right'}"></i>
-      </button>
+    <div class="contact-section-header">
+      <h2 class="cta-title">${data.tag || 'Get In Touch'}</h2>
+      <p class="cta-subtitle">${data.formSubtitle || 'Let\'s start a conversation'}</p>
+    </div>
+
+    <div class="contact-layout">
+      <div class="contact-info-list" data-aos="fade-up">
+        <article class="contact-info-card">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <h3 class="contact-card-title">Email</h3>
+            <p class="contact-card-text">khatwadesigns@gmail.com</p>
+          </div>
+        </article>
+
+        <article class="contact-info-card">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <h3 class="contact-card-title">Phone</h3>
+            <p class="contact-card-text">(+966)531175199</p>
+            <p class="contact-card-text">(+20)1096189832</p>
+          </div>
+        </article>
+
+        <article class="contact-info-card">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <h3 class="contact-card-title">Location</h3>
+            <p class="contact-card-text">Riyadh, Saudi Arabia</p>
+            <p class="contact-card-text">Mansoura, Egypt</p>
+          </div>
+        </article>
+
+        <article class="contact-info-card">
+          <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+          <div>
+            <h3 class="contact-card-title">WhatsApp</h3>
+            <p class="contact-card-text">(+966)531175199</p>
+            <p class="contact-card-text">(+20)1096189832</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="contact-form-card" data-aos="fade-up">
+        <form class="contact-form" novalidate>
+          <input type="text" name="name" placeholder="Your Name" aria-label="Your Name">
+          <input type="email" name="email" placeholder="Your Email" aria-label="Your Email">
+          <select name="country" class="country-select" aria-label="Select Country">
+            <option value="Egypt" data-code="+20" data-flag="🇪🇬" selected>Egypt</option>
+            <option value="Saudi Arabia" data-code="+966" data-flag="🇸🇦">Saudi Arabia</option>
+            <option value="UAE" data-code="+971" data-flag="🇦🇪">UAE</option>
+            <option value="Kuwait" data-code="+965" data-flag="🇰🇼">Kuwait</option>
+            <option value="Bahrain" data-code="+973" data-flag="🇧🇭">Bahrain</option>
+            <option value="Qatar" data-code="+974" data-flag="🇶🇦">Qatar</option>
+            <option value="Iraq" data-code="+964" data-flag="🇮🇶">Iraq</option>
+            <option value="Turkey" data-code="+90" data-flag="🇹🇷">Turkey</option>
+            <option value="Spain" data-code="+34" data-flag="🇪🇸">Spain</option>
+            <option value="Other" data-code="+000" data-flag="🌐">Other</option>
+          </select>
+          <div class="phone-input-group">
+            <div class="phone-prefix-display" aria-hidden="true">
+              <span class="phone-flag" id="phone-flag">🇸🇦</span>
+              <span class="phone-code" id="phone-code">+966</span>
+            </div>
+            <input type="hidden" name="phonePrefix" id="phone-prefix-input" value="+966">
+            <input type="tel" name="phone" class="phone-number-input" placeholder="Your Phone" aria-label="Your Phone Number">
+          </div>
+          <select name="service" aria-label="Select Service">
+            <option value="" selected disabled>Select Service</option>
+            <option value="brand-identity">Brand Identity</option>
+            <option value="logo-design">Logo Design</option>
+            <option value="web-design">Web Design</option>
+            <option value="motion-graphics">Motion Graphics</option>
+          </select>
+          <textarea name="message" rows="5" placeholder="Your Message" aria-label="Your Message"></textarea>
+          <button type="submit" class="btn-primary" aria-label="Send Message">Send Message</button>
+        </form>
+      </div>
     </div>
   `;
+
+  const contactForm = ctaSection.querySelector('.contact-form');
+  const countrySelect = ctaSection.querySelector('.country-select');
+  const phoneFlagElement = ctaSection.querySelector('#phone-flag');
+  const phoneCodeElement = ctaSection.querySelector('#phone-code');
+  const phonePrefixInput = ctaSection.querySelector('#phone-prefix-input');
+
+  const updatePhonePrefix = () => {
+    if (!countrySelect || !phoneFlagElement || !phoneCodeElement || !phonePrefixInput) return;
+
+    const selectedOption = countrySelect.options[countrySelect.selectedIndex];
+    const phoneCode = selectedOption.dataset.code || '+000';
+    const phoneFlag = selectedOption.dataset.flag || '🌐';
+
+    phoneCodeElement.textContent = phoneCode;
+    phoneFlagElement.textContent = phoneFlag;
+    phonePrefixInput.value = phoneCode;
+  };
+
+  countrySelect?.addEventListener('change', updatePhonePrefix);
+  updatePhonePrefix();
+
+  contactForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const formData = new FormData(contactForm);
+    const fullPhone = `${formData.get('phonePrefix')}${(formData.get('phone') || '').toString().trim()}`;
+    formData.set('phone', fullPhone);
+    const submissionData = Object.fromEntries(formData.entries());
+
+    const requiredFields = [
+      { key: 'name', label: 'Name' },
+      { key: 'email', label: 'Email' },
+      { key: 'country', label: 'Country' },
+      { key: 'phone', label: 'Phone' },
+      { key: 'message', label: 'Message' }
+    ];
+
+    const missingFields = requiredFields
+      .filter((field) => !String(submissionData[field.key] || '').trim())
+      .map((field) => field.label);
+
+    if (missingFields.length) {
+      alert(`Please fill in the required fields: ${missingFields.join(', ')}`);
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(String(submissionData.email).trim())) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    const emailSubject = `New Project Inquiry - ${submissionData.service || 'General'}`;
+    const emailBody = [
+      `Name: ${submissionData.name || ''}`,
+      `Email: ${submissionData.email || ''}`,
+      `Country: ${submissionData.country || ''}`,
+      `Phone: ${submissionData.phone || ''}`,
+      `Service: ${submissionData.service || ''}`,
+      '',
+      'Message:',
+      `${submissionData.message || ''}`
+    ].join('\n');
+
+    const mailtoUrl = `mailto:khatwadesigns@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    window.location.href = mailtoUrl;
+  });
 }
 
 /**

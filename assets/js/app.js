@@ -19,6 +19,14 @@ import {
 } from './ui.js';
 import { initAllAnimations } from './animations.js';
 
+function updateFooterYear() {
+  const yearElement = document.getElementById('current-year');
+
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+}
+
 /**
  * Initialize the application
  */
@@ -39,6 +47,7 @@ async function init() {
     renderWhyChoose(data.site.whyChoose);
     renderCTA(data.site.cta);
     renderFooter(data.site.footerText);
+    updateFooterYear();
 
     // Hide loading state
     hideLoading();

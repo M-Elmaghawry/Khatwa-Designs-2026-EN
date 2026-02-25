@@ -142,7 +142,7 @@ export function initClientsSlider() {
   if (!track) return;
 
   let scrollPosition = 0;
-  const scrollSpeed = 0.5;
+  const scrollSpeed = 0.55;
   let isPaused = false;
 
   // Clone items for infinite scroll

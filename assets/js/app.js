@@ -45,8 +45,8 @@ async function init() {
     renderClients(data.clients);
     renderTestimonials(data.testimonials);
     renderWhyChoose(data.site.whyChoose);
-    renderCTA(data.site.cta);
-    renderFooter(data.site.footerText);
+    renderCTA(data.site.cta, data.services);
+    renderFooter(data.site.footerText, data.services);
     updateFooterYear();
 
     // Hide loading state

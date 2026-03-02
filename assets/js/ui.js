@@ -197,10 +197,15 @@ export function renderWhyChoose(data) {
 /**
  * Render CTA Section
  * @param {Object} data - CTA section data
+ * @param {Array} services - Array of service objects
  */
-export function renderCTA(data) {
+export function renderCTA(data, services = []) {
   const ctaSection = document.querySelector('.cta-section .container');
   if (!ctaSection) return;
+
+  const serviceOptionsHTML = services.map(service => `
+            <option value="${service.id}">${service.title}</option>
+          `).join('');
 
   ctaSection.innerHTML = `
     <div class="contact-section-header">
@@ -272,10 +277,7 @@ export function renderCTA(data) {
           </div>
           <select name="service" aria-label="Select Service">
             <option value="" selected disabled>Select Service</option>
-            <option value="brand-identity">Brand Identity</option>
-            <option value="logo-design">Logo Design</option>
-            <option value="web-design">Web Design</option>
-            <option value="motion-graphics">Motion Graphics</option>
+            ${serviceOptionsHTML}
           </select>
           <textarea name="message" rows="5" placeholder="Your Message" aria-label="Your Message"></textarea>
           <button type="submit" class="btn-primary" aria-label="Send Message">Send Message</button>
@@ -353,14 +355,23 @@ export function renderCTA(data) {
 }
 
 /**
- * Render Footer Text
+ * Render Footer Text and Services Links
  * @param {string} text - Footer description text
+ * @param {Array} services - Array of service objects
  */
-export function renderFooter(text) {
+export function renderFooter(text, services = []) {
   const footerDescription = document.querySelector('.footer-description');
+  const footerLinks = document.querySelector('.footer-links');
+
   if (!footerDescription) return;
 
   footerDescription.textContent = text;
+
+  if (footerLinks) {
+    footerLinks.innerHTML = services.map(service => `
+      <li><a href="#services">${service.title}</a></li>
+    `).join('');
+  }
 }
 
 /**

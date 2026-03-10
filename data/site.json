@@ -65,6 +65,15 @@
     "tag": "Get in Touch",
     "title": "Ready to Start Your Project?",
     "subtitle": "Let's turn your ideas into reality and create a unique visual identity for your brand",
+    "formSubtitle": "Let's start a conversation",
+    "emailjs": {
+      "publicKey": "YOUR_EMAILJS_PUBLIC_KEY",
+      "serviceId": "YOUR_EMAILJS_SERVICE_ID",
+      "templateId": "YOUR_EMAILJS_TEMPLATE_ID",
+      "toEmail": "khatwadesigns@gmail.com",
+      "successMessage": "Thank you! Your message has been sent successfully.",
+      "errorMessage": "Sorry, your message could not be sent right now. Please try again."
+    },
     "buttonText": "Contact Us Now",
     "buttonIcon": "fa-arrow-right"
   },

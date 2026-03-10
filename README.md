@@ -16,6 +16,7 @@ This project is a professional landing page for a creative design agency called 
 - **🎭 Smooth Animations** - Scroll-triggered animations using Intersection Observer
 - **🔄 Auto-scrolling Clients Slider** - Infinite loop client showcase
 - **💬 Interactive Testimonials** - Swiper.js powered testimonial carousel
+- **📨 EmailJS Contact Form** - Contact form submissions are sent with EmailJS (no custom backend required)
 - **🌐 GitHub Pages Ready** - Deploy directly to GitHub Pages
 
 ## 🛠️ Tech Stack
@@ -183,6 +184,39 @@ All content is stored in JSON files in the `data/` directory. To update the webs
   }
 ]
 ```
+
+### 6. Contact Form Email Delivery (`data/site.json`)
+```json
+{
+  "cta": {
+    "emailjs": {
+      "publicKey": "YOUR_EMAILJS_PUBLIC_KEY",
+      "serviceId": "YOUR_EMAILJS_SERVICE_ID",
+      "templateId": "YOUR_EMAILJS_TEMPLATE_ID",
+      "toEmail": "khatwadesigns@gmail.com",
+      "successMessage": "Thank you! Your message has been sent successfully.",
+      "errorMessage": "Sorry, your message could not be sent right now. Please try again."
+    }
+  }
+}
+```
+
+## 📬 EmailJS Setup
+
+1. Create an account at [EmailJS](https://www.emailjs.com/).
+2. Add an email service (Gmail, Outlook, etc.) and copy the `Service ID`.
+3. Create an email template and copy the `Template ID`.
+4. Copy your `Public Key` from EmailJS account settings.
+5. Update `data/site.json` under `cta.emailjs` with your real values.
+6. In your EmailJS template, map these template variables:
+   - `from_name`
+   - `from_email`
+   - `country`
+   - `phone`
+   - `service`
+   - `message`
+   - `reply_to`
+   - `to_email`
 
 ## 🎨 Customization
 

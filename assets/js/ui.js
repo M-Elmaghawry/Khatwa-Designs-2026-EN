@@ -28,13 +28,31 @@ export function renderHero(data) {
     </h1>
     <p class="hero-subtitle">${data.subtitle || ''}</p>
     <div class="hero-cta">
-      <button class="btn-primary" aria-label="${data.primaryCta}">${data.primaryCta}</button>
-      <button class="btn-secondary" aria-label="${data.secondaryCta}">${data.secondaryCta}</button>
+      <button type="button" class="btn-primary hero-consultation-btn" aria-label="${data.primaryCta}">${data.primaryCta}</button>
+      <button type="button" class="btn-secondary hero-portfolio-btn" aria-label="${data.secondaryCta}">${data.secondaryCta}</button>
     </div>
     <div class="hero-stats">
       ${statsHTML}
     </div>
   `;
+
+  const consultationButton = heroContent.querySelector('.hero-consultation-btn');
+  const portfolioButton = heroContent.querySelector('.hero-portfolio-btn');
+
+  consultationButton?.addEventListener('click', () => {
+    const contactSection = document.getElementById('cta');
+
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    window.location.hash = 'cta';
+  });
+
+  portfolioButton?.addEventListener('click', () => {
+    window.open('https://www.behance.net/khatwadesigns2', '_blank', 'noopener,noreferrer');
+  });
 
   if (heroImage) {
     if (data.heroImage) {
@@ -291,6 +309,20 @@ export function renderCTA(data, services = []) {
   const phoneFlagElement = ctaSection.querySelector('#phone-flag');
   const phoneCodeElement = ctaSection.querySelector('#phone-code');
   const phonePrefixInput = ctaSection.querySelector('#phone-prefix-input');
+  const submitButton = ctaSection.querySelector('.contact-form button[type="submit"]');
+  const defaultSubmitButtonLabel = submitButton?.textContent || 'Send Message';
+  const emailJsConfig = data.emailjs || {};
+
+  const setSubmittingState = (isSubmitting) => {
+    if (!submitButton) return;
+    submitButton.disabled = isSubmitting;
+    submitButton.textContent = isSubmitting ? 'Sending...' : defaultSubmitButtonLabel;
+  };
+
+  const isEmailJsConfigured = ['publicKey', 'serviceId', 'templateId'].every((key) => {
+    const value = String(emailJsConfig[key] || '').trim();
+    return value && !value.startsWith('YOUR_EMAILJS_');
+  });
 
   const updatePhonePrefix = () => {
     if (!countrySelect || !phoneFlagElement || !phoneCodeElement || !phonePrefixInput) return;
@@ -307,7 +339,7 @@ export function renderCTA(data, services = []) {
   countrySelect?.addEventListener('change', updatePhonePrefix);
   updatePhonePrefix();
 
-  contactForm?.addEventListener('submit', (event) => {
+  contactForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
     const formData = new FormData(contactForm);
     const fullPhone = `${formData.get('phonePrefix')}${(formData.get('phone') || '').toString().trim()}`;
@@ -337,20 +369,43 @@ export function renderCTA(data, services = []) {
       return;
     }
 
-    const emailSubject = `New Project Inquiry - ${submissionData.service || 'General'}`;
-    const emailBody = [
-      `Name: ${submissionData.name || ''}`,
-      `Email: ${submissionData.email || ''}`,
-      `Country: ${submissionData.country || ''}`,
-      `Phone: ${submissionData.phone || ''}`,
-      `Service: ${submissionData.service || ''}`,
-      '',
-      'Message:',
-      `${submissionData.message || ''}`
-    ].join('\n');
+    if (!window.emailjs || !isEmailJsConfigured) {
+      alert('Email service is not configured yet. Please update EmailJS settings in data/site.json.');
+      return;
+    }
 
-    const mailtoUrl = `mailto:khatwadesigns@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-    window.location.href = mailtoUrl;
+    const templateParams = {
+      from_name: String(submissionData.name || '').trim(),
+      from_email: String(submissionData.email || '').trim(),
+      country: String(submissionData.country || '').trim(),
+      phone: String(submissionData.phone || '').trim(),
+      service: String(submissionData.service || 'General').trim(),
+      message: String(submissionData.message || '').trim(),
+      reply_to: String(submissionData.email || '').trim(),
+      to_email: String(emailJsConfig.toEmail || 'khatwadesigns@gmail.com').trim()
+    };
+
+    try {
+      setSubmittingState(true);
+
+      await window.emailjs.send(
+        String(emailJsConfig.serviceId).trim(),
+        String(emailJsConfig.templateId).trim(),
+        templateParams,
+        {
+          publicKey: String(emailJsConfig.publicKey).trim()
+        }
+      );
+
+      alert(emailJsConfig.successMessage || 'Thank you! Your message has been sent successfully.');
+      contactForm.reset();
+      updatePhonePrefix();
+    } catch (error) {
+      console.error('EmailJS send failed:', error);
+      alert(emailJsConfig.errorMessage || 'Sorry, your message could not be sent right now. Please try again.');
+    } finally {
+      setSubmittingState(false);
+    }
   });
 }
 

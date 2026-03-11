@@ -270,9 +270,10 @@ export function renderCTA(data, services = []) {
       </div>
 
       <div class="contact-form-card" data-aos="fade-up">
-        <form class="contact-form" novalidate>
-          <input type="text" name="name" placeholder="Your Name" aria-label="Your Name">
-          <input type="email" name="email" placeholder="Your Email" aria-label="Your Email">
+        <form id="contact-form" class="contact-form" novalidate>
+          <input type="text" name="website" class="honeypot-field" autocomplete="off" tabindex="-1" aria-hidden="true">
+          <input type="text" name="from_name" minlength="2" placeholder="Your Name" aria-label="Your Name" required>
+          <input type="email" name="from_email" placeholder="Your Email" aria-label="Your Email" required>
           <select name="country" class="country-select" aria-label="Select Country">
             <option value="Egypt" data-code="+20" data-flag="🇪🇬" selected>Egypt</option>
             <option value="Saudi Arabia" data-code="+966" data-flag="🇸🇦">Saudi Arabia</option>
@@ -291,14 +292,19 @@ export function renderCTA(data, services = []) {
               <span class="phone-code" id="phone-code">+966</span>
             </div>
             <input type="hidden" name="phonePrefix" id="phone-prefix-input" value="+966">
-            <input type="tel" name="phone" class="phone-number-input" placeholder="Your Phone" aria-label="Your Phone Number">
+            <input type="tel" name="phone_input" class="phone-number-input" placeholder="Your Phone" aria-label="Your Phone Number" pattern="[0-9\s\-]{6,}" required>
           </div>
+          <input type="hidden" name="phone" id="phone-full-input">
           <select name="service" aria-label="Select Service">
             <option value="" selected disabled>Select Service</option>
             ${serviceOptionsHTML}
           </select>
-          <textarea name="message" rows="5" placeholder="Your Message" aria-label="Your Message"></textarea>
-          <button type="submit" class="btn-primary" aria-label="Send Message">Send Message</button>
+          <textarea name="message" rows="5" minlength="10" placeholder="Your Message" aria-label="Your Message" required></textarea>
+          <button type="submit" class="btn-primary" aria-label="Send Message">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-loading" hidden>Sending...</span>
+          </button>
+          <p class="form-message" role="status" aria-live="polite"></p>
         </form>
       </div>
     </div>
@@ -309,14 +315,25 @@ export function renderCTA(data, services = []) {
   const phoneFlagElement = ctaSection.querySelector('#phone-flag');
   const phoneCodeElement = ctaSection.querySelector('#phone-code');
   const phonePrefixInput = ctaSection.querySelector('#phone-prefix-input');
+  const phoneFullInput = ctaSection.querySelector('#phone-full-input');
+  const websiteInput = ctaSection.querySelector('.honeypot-field');
   const submitButton = ctaSection.querySelector('.contact-form button[type="submit"]');
-  const defaultSubmitButtonLabel = submitButton?.textContent || 'Send Message';
+  const buttonText = submitButton?.querySelector('.btn-text');
+  const buttonLoading = submitButton?.querySelector('.btn-loading');
+  const formMessage = ctaSection.querySelector('.form-message');
   const emailJsConfig = data.emailjs || {};
 
   const setSubmittingState = (isSubmitting) => {
     if (!submitButton) return;
     submitButton.disabled = isSubmitting;
-    submitButton.textContent = isSubmitting ? 'Sending...' : defaultSubmitButtonLabel;
+    if (buttonText) buttonText.hidden = isSubmitting;
+    if (buttonLoading) buttonLoading.hidden = !isSubmitting;
+  };
+
+  const showMessage = (text, type) => {
+    if (!formMessage) return;
+    formMessage.textContent = text;
+    formMessage.className = `form-message ${type}`;
   };
 
   const isEmailJsConfigured = ['publicKey', 'serviceId', 'templateId'].every((key) => {
@@ -341,47 +358,41 @@ export function renderCTA(data, services = []) {
 
   contactForm?.addEventListener('submit', async (event) => {
     event.preventDefault();
+
+    showMessage('', '');
+
+    if (websiteInput && String(websiteInput.value || '').trim() !== '') {
+      console.warn('Spam detected in contact form honeypot field.');
+      return;
+    }
+
+    if (!contactForm.checkValidity()) {
+      showMessage('Please fill all required fields correctly.', 'error');
+      contactForm.reportValidity();
+      return;
+    }
+
     const formData = new FormData(contactForm);
-    const fullPhone = `${formData.get('phonePrefix')}${(formData.get('phone') || '').toString().trim()}`;
+    const fullPhone = `${formData.get('phonePrefix')}${(formData.get('phone_input') || '').toString().trim()}`;
     formData.set('phone', fullPhone);
+    if (phoneFullInput) {
+      phoneFullInput.value = fullPhone;
+    }
     const submissionData = Object.fromEntries(formData.entries());
 
-    const requiredFields = [
-      { key: 'name', label: 'Name' },
-      { key: 'email', label: 'Email' },
-      { key: 'country', label: 'Country' },
-      { key: 'phone', label: 'Phone' },
-      { key: 'message', label: 'Message' }
-    ];
-
-    const missingFields = requiredFields
-      .filter((field) => !String(submissionData[field.key] || '').trim())
-      .map((field) => field.label);
-
-    if (missingFields.length) {
-      alert(`Please fill in the required fields: ${missingFields.join(', ')}`);
-      return;
-    }
-
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(String(submissionData.email).trim())) {
-      alert('Please enter a valid email address.');
-      return;
-    }
-
     if (!window.emailjs || !isEmailJsConfigured) {
-      alert('Email service is not configured yet. Please update EmailJS settings in data/site.json.');
+      showMessage('Email service is not configured yet. Please update EmailJS settings in data/site.json.', 'error');
       return;
     }
 
     const templateParams = {
-      from_name: String(submissionData.name || '').trim(),
-      from_email: String(submissionData.email || '').trim(),
+      from_name: String(submissionData.from_name || '').trim(),
+      from_email: String(submissionData.from_email || '').trim(),
       country: String(submissionData.country || '').trim(),
       phone: String(submissionData.phone || '').trim(),
       service: String(submissionData.service || 'General').trim(),
       message: String(submissionData.message || '').trim(),
-      reply_to: String(submissionData.email || '').trim(),
+      reply_to: String(submissionData.from_email || '').trim(),
       to_email: String(emailJsConfig.toEmail || 'khatwadesigns@gmail.com').trim()
     };
 
@@ -397,12 +408,12 @@ export function renderCTA(data, services = []) {
         }
       );
 
-      alert(emailJsConfig.successMessage || 'Thank you! Your message has been sent successfully.');
+      showMessage(emailJsConfig.successMessage || 'Thank you! Your message has been sent successfully.', 'success');
       contactForm.reset();
       updatePhonePrefix();
     } catch (error) {
       console.error('EmailJS send failed:', error);
-      alert(emailJsConfig.errorMessage || 'Sorry, your message could not be sent right now. Please try again.');
+      showMessage(emailJsConfig.errorMessage || 'Sorry, your message could not be sent right now. Please try again.', 'error');
     } finally {
       setSubmittingState(false);
     }

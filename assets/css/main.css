@@ -951,6 +951,13 @@ button {
   gap: var(--spacing-md);
 }
 
+.honeypot-field {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .country-select {
   appearance: auto;
 }
@@ -1024,6 +1031,34 @@ button {
 .contact-form .btn-primary {
   width: fit-content;
   min-width: 180px;
+}
+
+.contact-form .btn-primary[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.contact-form .btn-loading {
+  display: none;
+}
+
+.contact-form .btn-loading:not([hidden]) {
+  display: inline-flex;
+}
+
+.form-message {
+  margin-top: 0.25rem;
+  font-size: var(--font-size-sm);
+  min-height: 1.2rem;
+  color: var(--text-light);
+}
+
+.form-message.success {
+  color: var(--primary-blue);
+}
+
+.form-message.error {
+  color: var(--dark-gray);
 }
 
 /* ==========================================
